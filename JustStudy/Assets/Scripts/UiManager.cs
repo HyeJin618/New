@@ -26,6 +26,8 @@ public class UiManager : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI _text;
 
+    int descid
+
     void Start()
     {
         test_01 = bg.sprite;
