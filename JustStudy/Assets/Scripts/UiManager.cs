@@ -26,7 +26,7 @@ public class UiManager : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI _text;
 
-    int descid
+    int descid;
 
     void Start()
     {
