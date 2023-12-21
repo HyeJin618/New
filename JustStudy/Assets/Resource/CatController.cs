@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class CatController : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     Rigidbody2D rigid2D;
     Animator animator;
@@ -31,7 +32,7 @@ public class CatController : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftArrow)) key = -1;
 
         // 플레이어 속도
-        float speedx = Mathf.Abs(this.rigid2D.velocity.x);
+        float speedx = Mathf.Abs(this.rigid2D.velocity.x); //Abs = 절대값 구하는 것
 
         // 스피드 제한
         if (speedx < this.maxWalkSpeed)
@@ -39,13 +40,19 @@ public class CatController : MonoBehaviour
             this.rigid2D.AddForce(transform.right * key * this.walkForce);
         }
 
-        // 움직이는 방향에 맞춰 이미지 반전 
+        // 움직이는 방향에 맞춰 이미지 반전
         if (key != 0)
         {
-            transform.localScale = new Vector3(key, 1, 1);
+            SpriteRenderer sprite = GetComponent<SpriteRenderer>();
+            //transform.localScale = new Vector3(key, 1, 1);
+            if (key == -1)
+            {
+                sprite.flipX = true;
+            }
+            else 
+            {
+                sprite.flipX = false;
+            }
         }
-
-        // 플레이어 속도에 맞춰 애니메이션 속도를 바꾼다 
-        this.animator.speed = speedx / 2.0f;
     }
 }
